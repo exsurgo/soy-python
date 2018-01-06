@@ -1,0 +1,28 @@
+{namespace my.namespace}
+
+/**
+ * Calls the fooBar() custom function
+ */
+{template .fooBar}
+    {fooBar()}
+{/template}
+
+/**
+ * Calls the addNumbers() custom function
+ * @param n1
+ * @param n2
+ */
+{template .addNumbers}
+    {addNumbers($n1, $n2)}
+{/template}
+
+/**
+ * Calls a python method dynamically
+ * @param module
+ * @param method
+ */
+{template .callMethod}
+    {callMethod($module, $method)}
+{/template}
+
+

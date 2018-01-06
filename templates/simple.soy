@@ -1,0 +1,48 @@
+
+{namespace templates autoescape="strict"}
+
+
+/**
+ * Says hello to the world.
+ */
+{template .helloWorld}
+  Hello world!
+{/template}
+
+
+/**
+ * Says hello to a person (or to the world if no person is given).
+ * @param? name The name of the person to say hello to.
+ */
+{template .helloName}
+  {if $name}
+    Hello {$name}!
+  {else}
+    {call .helloWorld /}
+  {/if}
+{/template}
+
+
+/**
+ * Say hello to a list of people.
+ * @param names List of names of the people to say hello to.
+ * @param CSP_NONCE
+ * @param unsafe_body
+ */
+{template .helloNames}
+  {foreach $name in $names}
+    {call .helloName}
+      {param name: $name /}
+    {/call}
+    {if not isLast($name)}
+      <br>  // break after every line except the last
+    {/if}
+  {ifempty}
+    // If names list is empty, say "Hello world".
+    {call .helloWorld /}
+  {/foreach}
+  {$unsafe_body}
+  <script nonce="{$CSP_NONCE}">
+   alert('hello');
+  </script>
+{/template}
