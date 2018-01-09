@@ -19,7 +19,7 @@ from runtime import runtime
 from runtime import sanitize
 
 NAMESPACE_MANIFEST = {
-    'templates': '.Users.exsurgo.Work.SoyPython.templates.simple',
+    'templates': '.Users.exsurgo.Work.soy-python.templates.simple',
 }
 
 try:
@@ -43,7 +43,7 @@ def helloName(data={}, ijData={}):
 
 def helloNames(data={}, ijData={}):
   output = []
-  output.append('<!--dta_of(templates.helloNames, /Users/exsurgo/Work/SoyPython/templates/simple.soy, 48)-->' if False else '')
+  output.append('<!--dta_of(templates.helloNames, /Users/exsurgo/Work/soy-python/templates/simple.soy, 32)-->' if False else '')
   nameList19 = data.get('names')
   if nameList19:
     for nameIndex19, nameData19 in enumerate(nameList19):

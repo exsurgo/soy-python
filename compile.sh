@@ -17,7 +17,7 @@ for path in $TEMPLATE_DIR/*.soy; do
 
     file="$(basename $path)"
     name="${file%.soy}"
-    echo "Compiling $file to python"
+    echo "Compiling $file to $name.py"
 
     # Run closure compiler in template directory, and compile all .soy files
     # into .py files to output directory. Both the python compiler

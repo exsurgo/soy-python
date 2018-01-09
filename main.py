@@ -6,8 +6,12 @@ print simple.helloWorld()
 
 print simple.helloName({'name': 'Bob'})
 
-print custom.fooBar()
+print custom.fooBarTemplate()
 
-print custom.addNumbers({'n1': 1, 'n2': 2})
+print custom.addNumbersTemplate({'n1': 1, 'n2': 2})
 
-print custom.callMethod({'module': 'utils', 'method': 'foo_bar_baz'})
+print custom.callMethodTemplate1Param()
+
+print custom.callMethodTemplate2Params()
+
+print custom.callMethodTemplateNamedParam({'value': 'My Named Value'})

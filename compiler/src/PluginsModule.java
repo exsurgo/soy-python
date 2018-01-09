@@ -13,6 +13,7 @@ public class PluginsModule extends AbstractModule {
         // Bind all class functions here
         soyFunctionsSetBinder.addBinding().to(FooBarFunction.class);
         soyFunctionsSetBinder.addBinding().to(AddNumbersFunction.class);
+        soyFunctionsSetBinder.addBinding().to(ExternalCallFunction.class);
         soyFunctionsSetBinder.addBinding().to(CallMethodFunction.class);
 
     }

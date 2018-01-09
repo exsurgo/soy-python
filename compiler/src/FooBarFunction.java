@@ -8,7 +8,7 @@ import com.google.template.soy.pysrc.restricted.PyExpr;
  */
 public class FooBarFunction implements SoyPySrcFunction {
 
-    public PyExpr computeForPySrc(List<PyExpr> params) {
+    public PyExpr computeForPySrc(List<PyExpr> args) {
         return new PyExpr("\"Foo Bar\"", Integer.MAX_VALUE);
     }
 
@@ -17,7 +17,7 @@ public class FooBarFunction implements SoyPySrcFunction {
     }
 
     public Set<Integer> getValidArgsSizes() {
-        return ImmutableSet.of(0);
+        return ImmutableSet.of(1);
     }
 
 }

@@ -2,9 +2,10 @@
 
 /**
  * Calls the fooBar() custom function
+ * @param var1
  */
-{template .fooBar}
-    {fooBar()}
+{template .fooBarTemplate}
+    {fooBar($var1)}
 {/template}
 
 /**
@@ -12,17 +13,35 @@
  * @param n1
  * @param n2
  */
-{template .addNumbers}
+{template .addNumbersTemplate}
     {addNumbers($n1, $n2)}
 {/template}
 
 /**
- * Calls a python method dynamically
- * @param module
- * @param method
+ * Calls a python method dynamically (From youtube code)
  */
-{template .callMethod}
-    {callMethod($module, $method)}
+{template .externalCallTemplate}
+    {externalCall('utils.foo_bar_baz')}
 {/template}
 
+/**
+ * Calls a python method dynamically w/ 1 argument
+ */
+{template .callMethodTemplate1Param}
+    {callMethod('utils', 'foo_bar_baz', 'My Value 1')}
+{/template}
 
+/**
+ * Calls a python method dynamically w/ 2 arguments
+ */
+{template .callMethodTemplate2Params}
+    {callMethod('utils', 'foo_bar_baz', 'My Value 1',  'My Value 2')}
+{/template}
+
+/**
+ * Calls a python method dynamically w/ 1 named argument
+ * @param value
+ */
+{template .callMethodTemplateNamedParam}
+    {callMethod('utils', 'foo_bar_baz', $value)}
+{/template}

@@ -19,7 +19,7 @@ from runtime import runtime
 from runtime import sanitize
 
 NAMESPACE_MANIFEST = {
-    'my.namespace': '.Users.exsurgo.Work.SoyPython.templates.custom',
+    'my.namespace': '.Users.exsurgo.Work.soy-python.templates.custom',
 }
 
 try:
@@ -29,19 +29,37 @@ except NameError:
 
 
 
-def fooBar(data={}, ijData={}):
+def fooBarTemplate(data={}, ijData={}):
   output = []
   output.append(str(sanitize.escape_html("Foo Bar")))
   return sanitize.SanitizedHtml(''.join(output), approval=sanitize.IActuallyUnderstandSoyTypeSafetyAndHaveSecurityApproval('Internally created Sanitization.'))
 
 
-def addNumbers(data={}, ijData={}):
+def addNumbersTemplate(data={}, ijData={}):
   output = []
   output.append(str(sanitize.escape_html('Sum is ' + str(data['n1'] + data['n2']))))
   return sanitize.SanitizedHtml(''.join(output), approval=sanitize.IActuallyUnderstandSoyTypeSafetyAndHaveSecurityApproval('Internally created Sanitization.'))
 
 
-def callMethod(data={}, ijData={}):
+def externalCallTemplate(data={}, ijData={}):
   output = []
-  output.append(str(sanitize.escape_html(getattr((__import__(data['module'])), data['method'])())))
+  output.append(str(sanitize.escape_html((ijData['utils'].get('foo_bar_baz') if 'utils' in ijData else __import__('utils.utils', globals(), locals(), -1).foo_bar_baz()))))
+  return sanitize.SanitizedHtml(''.join(output), approval=sanitize.IActuallyUnderstandSoyTypeSafetyAndHaveSecurityApproval('Internally created Sanitization.'))
+
+
+def callMethodTemplate1Param(data={}, ijData={}):
+  output = []
+  output.append(str(sanitize.escape_html(getattr(__import__('utils'), 'foo_bar_baz')('My Value 1'))))
+  return sanitize.SanitizedHtml(''.join(output), approval=sanitize.IActuallyUnderstandSoyTypeSafetyAndHaveSecurityApproval('Internally created Sanitization.'))
+
+
+def callMethodTemplate2Params(data={}, ijData={}):
+  output = []
+  output.append(str(sanitize.escape_html(getattr(__import__('utils'), 'foo_bar_baz')('My Value 1', 'My Value 2'))))
+  return sanitize.SanitizedHtml(''.join(output), approval=sanitize.IActuallyUnderstandSoyTypeSafetyAndHaveSecurityApproval('Internally created Sanitization.'))
+
+
+def callMethodTemplateNamedParam(data={}, ijData={}):
+  output = []
+  output.append(str(sanitize.escape_html(getattr(__import__('utils'), 'foo_bar_baz')(data.get('value')))))
   return sanitize.SanitizedHtml(''.join(output), approval=sanitize.IActuallyUnderstandSoyTypeSafetyAndHaveSecurityApproval('Internally created Sanitization.'))
